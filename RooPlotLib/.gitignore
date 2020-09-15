@@ -1,0 +1,5 @@
+*.o
+libRooPlotLib.a
+.sconsign.dblite
+.vscode/
+README.md

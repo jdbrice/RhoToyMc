@@ -1,0 +1,11 @@
+*.o
+unit
+.vscode/
+.sconsign.dblite
+*.a
+bk.cxx
+out.xml
+out.yaml
+this.sh
+tests
+README.md

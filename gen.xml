@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Task name="RhoGen" type="RhoGen" config="" nodePath="RhoGen"  />
+	<ver>TEST</ver>
+
+    <bins>
+        <!-- keep in sync with data analysis -->
+        <polmass min="0.5" max="1.2" width="0.001" />
+        <polpt min="0" max="0.4" width="0.001" />
+        <cosphi min="-1" max="1.0" width="0.01" />
+        <phi min="-3.1415926" max="3.1415926" nBins="126" />
+        <deltaPhi min="-3.141" max="3.141" nBins="50" />
+
+        <mass min="0.0" max="10.2" width="0.001" />
+        <pt min="0" max="0.6" width="0.001" />
+        <eta min="-4" max="4" width="0.05" />
+
+        <weight min="0" max="5" width="0.01" />
+    </bins>
+
+    <p>
+        <nevents>100000</nevents>
+        <winc>0.56</winc>
+        <momres>0.025</momres>
+        <mufraction>0.025</mufraction>
+        <applyTof>false</applyTof>
+
+        <pt_range0 min="0.01" max="0.04" />
+        <pt_range1 min="0.11" max="0.15" />
+        <mass min="0.0" max="2.0" />
+
+        <rho>
+            <pt min="0.0" max="0.3" />
+            <eta min="-4" max="4" />
+        </rho>
+
+        <pi>
+            <pt min="0.001" max="10.0" />
+            <eta min="-4.0" max="4.0" />
+        </pi>
+    </p>
+	
+    <!-- mu2 == mufrac=0.005 -->
+	
+	<RhoGen>
+		<input>
+			<!-- <TFile name="FF" url="SnapshotFormFactor.root"  /> -->
+            <TFile name="TOFEFF" url="out_eff.root"  />
+            <TFile name="FF" url="VM_Shape2.root"  />
+            <TFile name="mass" url="RHO_WEIGHT_MAP.root"  />
+            <TFile name="incoh" url="sl_incoh.root" />
+		</input>
+
+		<histograms>
+
+            <Histo name="phi" title=";phi pair; counts" bins_x="bins.phi" />
+            <Histo name="phi1" title=";phi1; counts" bins_x="bins.phi" />
+            <Histo name="phi2" title=";phi2; counts" bins_x="bins.phi" />
+
+            <Histo name="tof_weight_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" bins_y="bins.weight" />
+            <Histo name="tof_pair_weight_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" bins_y="bins.weight" />
+
+            <Histo name="mu_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+            <Histo name="pi_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+
+            <Histo name="mu_inp_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+            <Histo name="pi_inp_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+
+            <Histo name="mu_inp_eta" title=";p_{T} (GeV/c);" bins_x="bins.eta" />
+            <Histo name="pi_inp_eta" title=";p_{T} (GeV/c);" bins_x="bins.eta" />
+
+            <Histo name="mu_eta" title=";p_{T} (GeV/c);" bins_x="bins.eta" />
+            <Histo name="pi_eta" title=";p_{T} (GeV/c);" bins_x="bins.eta" />
+
+            <Histo name="star_mu_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+            <Histo name="star_pi_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+
+            <Histo name="star_mu_eta" title=";p_{T} (GeV/c);" bins_x="bins.eta" />
+            <Histo name="star_pi_eta" title=";p_{T} (GeV/c);" bins_x="bins.eta" />
+
+            <Histo name="wmu_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+            <Histo name="wpi_pt" title=";p_{T} (GeV/c);" bins_x="bins.pt" />
+
+            <!-- everything, compare to data -->
+            <Histo name="polptmass" bins_x="bins.polmass" bins_y="bins.polpt" bins_z="bins.deltaPhi" />
+            <Histo name="c1ptmass" bins_x="bins.polmass" bins_y="bins.polpt" bins_z="bins.cosphi" />
+            <Histo name="c2ptmass" bins_x="bins.polmass" bins_y="bins.polpt" bins_z="bins.cosphi" />
+            <Histo name="c3ptmass" bins_x="bins.polmass" bins_y="bins.polpt" bins_z="bins.cosphi" />
+            <Histo name="c4ptmass" bins_x="bins.polmass" bins_y="bins.polpt" bins_z="bins.cosphi" />
+            <Histo name="c6ptmass" bins_x="bins.polmass" bins_y="bins.polpt" bins_z="bins.cosphi" />
+
+            <Histo name="mass" title="" bins_x="bins.mass" />
+            <Histo name="pt" title="" bins_x="bins.pt" />
+
+            <Histo name="inc_mass" title="" bins_x="bins.mass" />
+            <Histo name="inc_pt" title="" bins_x="bins.pt" />
+
+            <Histo name="pipi_mass" title="" bins_x="bins.mass" />
+            <Histo name="pipi_pt" title="" bins_x="bins.pt" />
+
+            <Histo name="coh_mass" title="" bins_x="bins.mass" />
+            <Histo name="coh_pt" title="" bins_x="bins.pt" />
+
+            <Histo name="pimu_mass" title="" bins_x="bins.mass" />
+            <Histo name="pimu_pt" title="" bins_x="bins.pt" />
+
+            <Histo name="c1ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="c2ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="c4ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+
+            <Histo name="pipi_c1ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="pipi_c2ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="pipi_c4ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+
+            <Histo name="pimu_c1ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="pimu_c2ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="pimu_c4ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+
+            <Histo name="inc_c1ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="inc_c2ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+            <Histo name="inc_c4ppt" bins_x="bins.pt" bins_y="bins.cosphi" />
+
+
+            <Histo name="c1pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="c2pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="c4pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+            <Histo name="pipi_c1pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pipi_c2pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pipi_c4pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+            <Histo name="pimu_c1pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pimu_c2pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pimu_c4pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+            <Histo name="inc_c1pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="inc_c2pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="inc_c4pmass0" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+            <Histo name="c1pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="c2pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="c4pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+            <Histo name="pipi_c1pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pipi_c2pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pipi_c4pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+            <Histo name="pimu_c1pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pimu_c2pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="pimu_c4pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+            <Histo name="inc_c1pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="inc_c2pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+            <Histo name="inc_c4pmass1" bins_x="bins.mass" bins_y="bins.cosphi" />
+
+		</histograms>
+
+		<output>
+			<TFile url="GENV2_{ver}.root" />
+		</output>
+	</RhoGen>
+
+
+	
+</config>
